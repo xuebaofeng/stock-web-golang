@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>股票</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        代码
+                    </th>
+                    <th>
+                        名称
+                    </th>
+                    <th>
+                        行业
+                    </th>
+                    <th>
+                        牛叉诊股基本面
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $index, $element := .}}
+                <tr>
+                    <td>
+                        {{ $index }}
+                    </td>
+                    <td>
+                        <a href="http://xueqiu.com/S/{{ $element.Id }}" target="_blank">{{ $element.Id }}</a>
+                    </td>
+                    <td>
+                        {{ $element.Name }}
+                    </td>
+                    <td>
+                        {{ $element.Industry }}
+                    </td>
+                    <td>
+                        {{ $element.Niucha_percent }}
+                    </td>
+                </tr>
+                {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
