@@ -27,7 +27,7 @@ func main() {
 		}
 
 		rows, err := db.Query(`select s.id, b.name,  b.industry,ths_percent  from stock s join stock_base b on s.id=b.id
-			where icf_level=50 and ths_percent>=90  and c_date=current_date order by s.ths_percent desc;`)
+			where icf_level=50 and ths_percent>=80  and c_date=current_date order by s.ths_percent desc;`)
 
 		if err != nil {
 			log.Fatal(err)
