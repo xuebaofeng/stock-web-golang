@@ -7,7 +7,7 @@ import (
 	"database/sql"
 	_ "github.com/lib/pq"
 	"log"
-	"./model"
+	"github.com/xuebaofeng/stock-web-golang/model"
 )
 
 func main() {
@@ -37,11 +37,12 @@ func main() {
 		for rows.Next() {
 			s := model.Stock{}
 			err = rows.Scan(&s.Id, &s.Name, &s.Industry, &s.Niucha_percent)
+			s.ShortId = s.Id[2:]
 			arr = append(arr, s)
 		}
 		r.HTML(200, "index", arr)
 	})
 
 
-	m.RunOnAddr(":8888")
+	m.RunOnAddr(":80")
 }

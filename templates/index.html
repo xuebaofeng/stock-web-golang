@@ -34,6 +34,9 @@
                     <th>
                         牛叉诊股基本面
                     </th>
+                    <th>
+                        链接
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +46,7 @@
                         {{ $index }}
                     </td>
                     <td>
-                        <a href="http://xueqiu.com/S/{{ $element.Id }}" target="_blank">{{ $element.Id }}</a>
+                        {{ $element.Id }}
                     </td>
                     <td>
                         {{ $element.Name }}
@@ -53,6 +56,11 @@
                     </td>
                     <td>
                         {{ $element.Niucha_percent }}
+                    </td>
+                    <td>
+                        <a href="http://xueqiu.com/S/{{ $element.Id }}" target="_blank">雪球</a>
+                        <a href="http://doctor.10jqka.com.cn/{{$element.ShortId}}/#nav_basic" target="_blank">牛叉诊股</a>
+                        <a href="http://www.icaifu.com/stock/doctora/{{$element.Id}}.shtml" target="_blank">i财富</a>
                     </td>
                 </tr>
                 {{ end }}
