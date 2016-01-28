@@ -2,7 +2,7 @@ package model
 
 type Stock struct {
 	Id             string
-	ShortId string
+	WebId string
 	Name           string
 	Industry       string
 	Niucha_percent int
