@@ -1,26 +1,17 @@
 package main
 
 import (
-	"github.com/go-martini/martini"
-	"github.com/martini-contrib/render"
-	"github.com/martini-contrib/gzip"
 	"database/sql"
 	_ "github.com/lib/pq"
 	"log"
-	"github.com/xuebaofeng/stock-web-golang/model"
+	"./model"
+	"net/http"
+	"html/template"
 )
 
 func main() {
-	m := martini.Classic()
-	m.Use(gzip.All())
-	m.Use(martini.Static("public"))
 
-	m.Use(render.Renderer(render.Options{
-		Extensions: []string{".html"}, // Specify extensions to load for templates.
-		Charset: "UTF-8", // Sets encoding for json and html content-types. Default is "UTF-8".
-	}))
-
-	m.Get("/", func(r render.Render) {
+	http.Handle("/", func(w http.ResponseWriter, r *http.Request) {
 		db, err := sql.Open("postgres", "postgres://postgres:123456@localhost/stock?sslmode=disable")
 		if err != nil {
 			log.Fatal(err)
@@ -41,8 +32,9 @@ func main() {
 			s.WebId += "." + s.Id[0:2]
 			arr = append(arr, s)
 		}
-		r.HTML(200, "index", arr)
+		t, _ := template.ParseFiles("index.html")
+		t.Execute(w, arr)
 	})
 
-	m.RunOnAddr(":80")
+	http.ListenAndServe(":80", nil)
 }
